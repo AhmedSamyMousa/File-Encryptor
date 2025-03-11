@@ -1,3 +1,8 @@
+BG_COLOR = "#09090B"
+BTNS_COLOR = "#FAFAFA"
+BTNS_HOVER_COLOR = "#E2E2E2"
+ERROR_COLOR = "red"
+
 import tkinter as tk
 import customtkinter as ctk
 from tkinter import filedialog, messagebox
@@ -51,16 +56,17 @@ class FileExtensionChanger:
             json.dump(self.encrypted_files_db, f)
 
     def setup_ui(self):
-
-        ctk.set_appearance_mode("System")  
+        ctk.set_appearance_mode("Dark")
         ctk.set_default_color_theme("blue")
 
         self.root = ctk.CTk()
         self.root.title("File Encryptor & Extension Changer")
         self.root.geometry("540x780")
         self.root.resizable(False, False)
+        
+        self.root.configure(fg_color=BG_COLOR)
 
-        self.content_frame = ctk.CTkFrame(self.root, corner_radius=10)
+        self.content_frame = ctk.CTkFrame(self.root, corner_radius=10, fg_color=BG_COLOR)
         self.content_frame.pack(fill="both", expand=True, padx=20, pady=20)
 
         self.header_frame = ctk.CTkFrame(self.content_frame, fg_color="transparent")
@@ -78,9 +84,10 @@ class FileExtensionChanger:
             text="🌙",
             width=40,
             command=self.toggle_theme,
-            fg_color="transparent",
+            fg_color=BTNS_COLOR,
+            hover_color=BTNS_HOVER_COLOR,
             border_width=1,
-            text_color=("gray10", "gray90")
+            text_color=("#000000", "#000000")
         )
         self.theme_button.pack(side="right")
 
@@ -119,7 +126,10 @@ class FileExtensionChanger:
             height=38,
             corner_radius=8,
             border_width=0,
-            font=ctk.CTkFont(weight="bold")
+            font=ctk.CTkFont(weight="bold"),
+            fg_color=BTNS_COLOR,
+            hover_color=BTNS_HOVER_COLOR,
+            text_color="#000000"
         )
         self.choose_file_btn.pack(fill="x", padx=15, pady=(0, 15))
 
@@ -191,8 +201,9 @@ class FileExtensionChanger:
             height=42,
             corner_radius=8,
             font=ctk.CTkFont(weight="bold"),
-            fg_color="#2e7d32",
-            hover_color="#1b5e20"
+            fg_color=BTNS_COLOR,
+            hover_color=BTNS_HOVER_COLOR,
+            text_color="#000000"
         )
         self.encrypt_btn.pack(fill="x", padx=20, pady=(20, 10))
 
@@ -215,7 +226,10 @@ class FileExtensionChanger:
             height=38,
             corner_radius=8,
             border_width=0,
-            font=ctk.CTkFont(weight="bold")
+            font=ctk.CTkFont(weight="bold"),
+            fg_color=BTNS_COLOR,
+            hover_color=BTNS_HOVER_COLOR,
+            text_color="#000000"
         )
         self.decrypt_choose_file_btn.pack(fill="x", padx=15, pady=(0, 15))
 
@@ -251,8 +265,9 @@ class FileExtensionChanger:
             height=42,
             corner_radius=8,
             font=ctk.CTkFont(weight="bold"),
-            fg_color="#1976d2",
-            hover_color="#0d47a1"
+            fg_color=BTNS_COLOR,
+            hover_color=BTNS_HOVER_COLOR,
+            text_color="#000000"
         )
         self.decrypt_btn.pack(fill="x", padx=20, pady=(20, 10))
 
@@ -283,7 +298,7 @@ class FileExtensionChanger:
             self.footer_frame,
             text="⚠️ Remember your password, files cannot be recovered without it!",
             font=ctk.CTkFont(size=11, weight="bold"),
-            text_color=("#d32f2f", "#f44336")
+            text_color=(ERROR_COLOR, ERROR_COLOR)
         )
         warning_label.pack(side="right")
 
@@ -309,6 +324,9 @@ class FileExtensionChanger:
         else:
             ctk.set_appearance_mode("Dark")
             self.theme_button.configure(text="☀️")
+        
+        self.root.configure(fg_color=BG_COLOR)
+        self.content_frame.configure(fg_color=BG_COLOR)
 
     def toggle_password_visibility(self):
         if self.show_password_var.get() == 1:
@@ -507,7 +525,10 @@ class FileExtensionChanger:
                     ctk.CTkButton(
                         extension_dialog,
                         text="OK",
-                        command=set_extension
+                        command=set_extension,
+                        fg_color=BTNS_COLOR,
+                        hover_color=BTNS_HOVER_COLOR,
+                        text_color="#000000"
                     ).pack(pady=20)
 
                     self.root.wait_window(extension_dialog)
@@ -593,7 +614,7 @@ class FileExtensionChanger:
 
         if level == "error":
             self.status_frame.configure(fg_color=("#ffebee", "#411c1c"))
-            self.status_label.configure(text_color=("#d32f2f", "#f44336"))
+            self.status_label.configure(text_color=(ERROR_COLOR, ERROR_COLOR))
         elif level == "success":
             self.status_frame.configure(fg_color=("#e8f5e9", "#1c3a1c"))
             self.status_label.configure(text_color=("#2e7d32", "#4caf50"))
