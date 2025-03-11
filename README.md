@@ -13,8 +13,7 @@ File Encryptor & Extension Changer is a simple and secure Python application tha
 ## Installation
 1. **Clone the repository:**
    ```sh
-   git clone 
-   cd file-encryptor
+   git clone https://github.com/AhmedSamyMousa/File-Encryptor.git 
    ```
 
 2. **Install dependencies:**
@@ -37,10 +36,10 @@ File Encryptor & Extension Changer is a simple and secure Python application tha
 
 ## Screenshots
 ### **Encryption Process**
-![Main Interface](screenshots/encryption_process.png)
+![Main Interface](Encryption.png)
 
 ### **Decryption Process**
-![Encryption Process](screenshots/encryption_process.png)
+![Encryption Process](Decryption.png)
 
 ## License
 This project is licensed under the MIT License.
